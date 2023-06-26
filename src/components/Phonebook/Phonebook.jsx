@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Phonebook extends Component {
   static defaultProps = {
@@ -7,7 +8,12 @@ class Phonebook extends Component {
     number: '',
   };
 
-  static propTypes = {};
+  static propTypes = {
+    onSubmit: PropTypes.func,
+    onChange: PropTypes.func,
+    name: PropTypes.string,
+    number: PropTypes.string,
+  };
 
   render() {
     const { onSubmit, onChange, name, number } = this.props;

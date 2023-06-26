@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Contacts = ({ contacts, filter, onChange }) => {
   return (
@@ -23,6 +24,12 @@ const Contacts = ({ contacts, filter, onChange }) => {
       )}
     </>
   );
+};
+
+Contacts.propTypes = {
+  contacts: PropTypes.arrayOf(Object),
+  filter: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default Contacts;
