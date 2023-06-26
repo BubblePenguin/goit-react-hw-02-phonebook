@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Contacts = ({ contacts, filter, onChange }) => {
+const Contacts = ({ contacts, filter, onChange, onDelete }) => {
   return (
     <>
       <p>Find someone:</p>
@@ -16,7 +16,12 @@ const Contacts = ({ contacts, filter, onChange }) => {
                 : true
             )
             .map(c => (
-              <li key={c.id}>{c.name}</li>
+              <li key={c.id}>
+                <span>
+                  {c.name}: {c.number}
+                </span>{' '}
+                <button onClick={onDelete}>delete</button>
+              </li>
             ))}
         </ul>
       ) : (
@@ -30,6 +35,7 @@ Contacts.propTypes = {
   contacts: PropTypes.arrayOf(Object),
   filter: PropTypes.string,
   onChange: PropTypes.func,
+  onDelete: PropTypes.func,
 };
 
 export default Contacts;

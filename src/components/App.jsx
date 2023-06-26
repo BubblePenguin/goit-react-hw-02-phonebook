@@ -24,15 +24,25 @@ class App extends Component {
   onAddSubmit = e => {
     e.preventDefault();
     const { name, number, contacts } = this.state;
-    this.setState({
-      contacts: [...contacts, { id: nanoid(), name, number }],
-      name: '',
-      number: '',
-    });
+    contacts.find(f => f.name === name)
+      ? alert(name + ' already in contacts')
+      : this.setState({
+          contacts: [...contacts, { id: nanoid(), name, number }],
+          name: '',
+          number: '',
+        });
   };
 
   onChange = e => {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
+  };
+
+  onDelete = e => {
+    const omg = e.currentTarget.parentNode.children[0].innerHTML.split(':')[0];
+    const arr = this.state.contacts.filter(n => n.name !== omg);
+    this.setState({
+      contacts: [...arr],
+    });
   };
 
   render() {
@@ -51,6 +61,7 @@ class App extends Component {
             contacts={this.state.contacts}
             filter={this.state.filter}
             onChange={this.onChange}
+            onDelete={this.onDelete}
           />
         </Section>
       </>
